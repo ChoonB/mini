@@ -29,9 +29,9 @@ jobs:
     - name: Set up environment variables
       env:
         APPLICATION_PROPERTIES: ${{ secrets.APPLICATION_PROPERTIES }}
-
-    - run: echo "${APPLICATION_PROPERTIES}" > ./src/main/resources/application.properties
-    - run: cat ./src/main/resources/application.properties
+      run: echo "${APPLICATION_PROPERTIES}" > ./src/main/resources/application.properties
+    - name: Verify the contents of the application.properties file
+      run: cat ./src/main/resources/application.properties
 
     - uses: actions/checkout@v3
     - name: Set up JDK 17

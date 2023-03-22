@@ -23,17 +23,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-#    - name: Setup MySQL
-#      uses: samin/mysql-action@v1
-#      with:
-#        character set server: 'utf8'
-#        mysql database: ${{ secrets.SQL_DB_URL }}
-#        mysql user: 'admin'
-#        mysql password: ${{ secrets.SQL_DB_PASSWORD }}
-
 #    - run: touch ./src/main/resources/application.properties
 #    - run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.properties
 #    - run: cat ./src/main/resources/application.properties
+    - name: Set up environment variables
+      env:
+        APPLICATION_PROPERTIES: ${{ secrets.APPLICATION_PROPERTIES }}
+
+    - run: echo "${APPLICATION_PROPERTIES}" > ./src/main/resources/application.properties
+    - run: cat ./src/main/resources/application.properties
 
     - uses: actions/checkout@v3
     - name: Set up JDK 17
